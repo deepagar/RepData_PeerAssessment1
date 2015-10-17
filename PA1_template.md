@@ -96,14 +96,27 @@ This creates a histogram of total number of steps taken each day.
 
 
 ```r
-png("plot1.png", width = 480, height = 480)
 hist(cdata1$N, xlab = "Sum of number of steps in a day", main = "Total number of steps taken in a day", panel.first = grid(), col = "lightblue", breaks = 10)
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
+
+```r
+dev.copy(png, './figure/plot1.png')
+```
+
+```
+## png 
+##   3
+```
+
+```r
 dev.off()
 ```
 
 ```
-## RStudioGD 
-##         2
+## png 
+##   2
 ```
 
 
@@ -144,14 +157,27 @@ head(cdata2)
 ```
 
 ```r
-png("plot2.png", width = 480, height = 480)
 with(cdata2, plot(interval, MeanSteps, type = "l", col = "blue"))
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+
+```r
+dev.copy(png, './figure/plot2.png')
+```
+
+```
+## png 
+##   3
+```
+
+```r
 dev.off()
 ```
 
 ```
-## RStudioGD 
-##         2
+## png 
+##   2
 ```
   
 *2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?*
@@ -247,21 +273,32 @@ head(cdata3)
 ```
 
 ```r
-png("plot3.png", width = 480, height = 480)
 hist(cdata3$N, xlab = "Sum of number of steps in a day", main = "Total number of steps taken in a day", panel.first = grid(), col = "lightblue", breaks = 10)
+```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
+
+```r
+dev.copy(png, './figure/plot3.png')
+```
+
+```
+## png 
+##   3
+```
+
+```r
 dev.off()
 ```
 
 ```
-## RStudioGD 
-##         2
+## png 
+##   2
 ```
 
 ```r
 mean(cdata3$N)
 ```
-
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
 
 ```
 ## [1] 10821.21
@@ -288,18 +325,31 @@ The histograms are produced here for comparison.
 
 
 ```r
-png("plot4.png", width = 480, height = 480)
 par(mfrow = c(1, 2))
 histo1 <- hist(cdata1$N, xlab = "Sum of number of steps in a day", main = "With missing values", panel.first = grid(), col = "lightblue", breaks = 10, ylim = c(0, 20))
 abline(h = max(histo1$counts), col = "red")
 histo2 <- hist(cdata3$N, xlab = "Sum of number of steps in a day", main = "Missing values replaced", panel.first = grid(), col = "lightblue", breaks = 10, ylim = c(0, 20))
 abline(h = max(histo2$counts), col = "red")
+```
+
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
+
+```r
+dev.copy(png, './figure/plot4.png')
+```
+
+```
+## png 
+##   3
+```
+
+```r
 dev.off()
 ```
 
 ```
-## RStudioGD 
-##         2
+## png 
+##   2
 ```
 
 Both the mean and the median have increased.
@@ -351,14 +401,27 @@ head(cdata4)
 ```
 
 ```r
-png("plot5.png", width = 480, height = 480)
 xyplot(meanstepsnew ~ interval | daytype, cdata4, type = "l", layout = c(1, 2))
+```
+
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png) 
+
+```r
+dev.copy(png, './figure/plot5.png')
+```
+
+```
+## png 
+##   3
+```
+
+```r
 dev.off()
 ```
 
 ```
-## RStudioGD 
-##         2
+## png 
+##   2
 ```
 
 On weekdays, there are fewer steps (lower average) taken in the 1000-2000 interval, than on weekends. However, there is a larger spike in the 800-1000 interval on the weekday graph. Overall, there appears to be more activity on the weekend than on  weekdays.

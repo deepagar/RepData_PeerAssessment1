@@ -64,8 +64,8 @@ head(cdata1)
 This creates a histogram of total number of steps taken each day.
 
 ```{r}
-png("plot1.png", width = 480, height = 480)
 hist(cdata1$N, xlab = "Sum of number of steps in a day", main = "Total number of steps taken in a day", panel.first = grid(), col = "lightblue", breaks = 10)
+dev.copy(png, './figure/plot1.png')
 dev.off()
 ```
 
@@ -93,8 +93,8 @@ I create a new dataset called "cdata2", which contains the fields: "interval", "
 cdata2 <- ddply(activitydata, c("interval", "WeekDay"), summarise,
                 MeanSteps = mean(steps, na.rm=TRUE))
 head(cdata2)
-png("plot2.png", width = 480, height = 480)
 with(cdata2, plot(interval, MeanSteps, type = "l", col = "blue"))
+dev.copy(png, './figure/plot2.png')
 dev.off()
 ```
   
@@ -146,8 +146,8 @@ head(activitydatanew)
 ```{r}
 cdata3 <- ddply(activitydatanew, c("date"), summarise, N = sum(steps))
 head(cdata3)
-png("plot3.png", width = 480, height = 480)
 hist(cdata3$N, xlab = "Sum of number of steps in a day", main = "Total number of steps taken in a day", panel.first = grid(), col = "lightblue", breaks = 10)
+dev.copy(png, './figure/plot3.png')
 dev.off()
 mean(cdata3$N)
 median(cdata3$N)
@@ -165,12 +165,12 @@ Median    | `r median(cdata1$N, na.rm=TRUE)` | `r median(cdata3$N)`
 The histograms are produced here for comparison.
 
 ```{r}
-png("plot4.png", width = 480, height = 480)
 par(mfrow = c(1, 2))
 histo1 <- hist(cdata1$N, xlab = "Sum of number of steps in a day", main = "With missing values", panel.first = grid(), col = "lightblue", breaks = 10, ylim = c(0, 20))
 abline(h = max(histo1$counts), col = "red")
 histo2 <- hist(cdata3$N, xlab = "Sum of number of steps in a day", main = "Missing values replaced", panel.first = grid(), col = "lightblue", breaks = 10, ylim = c(0, 20))
 abline(h = max(histo2$counts), col = "red")
+dev.copy(png, './figure/plot4.png')
 dev.off()
 ```
 
@@ -198,8 +198,8 @@ The time series plot is produced here.
 ```{r}
 cdata4 <- ddply(activitydatanew, c("interval", "daytype"), summarise, meanstepsnew = mean(steps, na.rm=TRUE))
 head(cdata4)
-png("plot5.png", width = 480, height = 480)
 xyplot(meanstepsnew ~ interval | daytype, cdata4, type = "l", layout = c(1, 2))
+dev.copy(png, './figure/plot5.png')
 dev.off()
 ```
 
